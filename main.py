@@ -7,7 +7,7 @@ def esEntero(x):
     except:
         return False
 
-def InputUntil(msg, validation = None, error_msg = 'Debe introducir un valor entero y mayor que cero.\n', transformation = None):
+def InputUntil(msg, validation = None, error_msg = 'Se ha producido un error', transformation = None):
     _input_value = input(msg)
     while validation and not validation(_input_value):
         print(error_msg)
@@ -17,7 +17,7 @@ def InputUntil(msg, validation = None, error_msg = 'Debe introducir un valor ent
 
     return _input_value
 
-decimal = InputUntil("Introduzca un número entero y positivo: ", lambda x: esEntero(x) and int(x) > 0)
+decimal = InputUntil("Introduzca un número entero y positivo: ", lambda x: esEntero(x) and int(x) > 0, 'Debe introducir un valor entero y mayor que cero.\n', lambda x: x.lstrip('0'))
 
 if int(decimal) > 3999:
     decimal1 = decimal[0:1]
