@@ -20,8 +20,8 @@ def InputUntil(msg, validation = None, error_msg = 'Se ha producido un error', t
 decimal = InputUntil("Introduzca un número entero y positivo: ", lambda x: esEntero(x) and int(x) > 0, 'Debe introducir un valor entero y mayor que cero.\n', lambda x: x.lstrip('0'))
 
 if int(decimal) > 3999:
-    decimal1 = decimal[0:1]
-    decimal2 = decimal[1:]
+    decimal1 = decimal[0:-3]
+    decimal2 = decimal[-3:]
     roman1 = conversion.arabRomano(decimal1)
     roman2 = conversion.arabRomano(decimal2)
     
