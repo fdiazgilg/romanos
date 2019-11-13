@@ -4,15 +4,21 @@ def arabRomano(num):
     arabSep = []
     
     while int(num) > _MAX:
-        num1 = num[-3:]
-        arabSep.append(num1)        
-        num2 = num[:-3]
+        
+        num1 = num[-4:]
+        if int(num1) > _MAX:
+            aux = num[-3:]
+            arabSep.append(aux)
+            num2 = num[:-3]
+        else:
+            arabSep.append(num1)
+            num2 = num[:-4] + '0'
         
         num = num2
-    
+   
     arabSep.append(num)
     arabSep.reverse()
-
+    
     listNumRomano = []
     for numArab in arabSep:
 
@@ -36,25 +42,25 @@ def arabRomano(num):
             numRomano += listRomano[k]
             
         listNumRomano.append(numRomano)
-        
         esRomano = ''
-        for l in range(len(listNumRomano)-1):
-            esRomano += listNumRomano[l]
         
-        if len(listNumRomano) >= 2:
-            romano = '(' + esRomano + ')' + listNumRomano[-1]
-        else:
-            romano = esRomano + listNumRomano[-1]
-
-    return romano
+        for i in range(len(listNumRomano)):
+            if listNumRomano[i] == '':
+                pass
+            else:
+                esRomano += '(' * (len(listNumRomano)-1-i) + listNumRomano[i] + ')' * (len(listNumRomano)-1-i)
+        
+    return esRomano
 
 def romanoArab(num):
+
     dict = {'M':1000, 'D':500, 'C':100, 'L':50, 'X':10, 'V':5, 'I':1}
     listArab = []
     numArab = 0
+    
     for key in num:
         listArab.append(dict[key])
-
+    
     i = -len(listArab)
     while i < -1:
         if listArab[i] >= listArab[i+1]:
@@ -65,5 +71,5 @@ def romanoArab(num):
             i += 2
     if i == -1:
         numArab += listArab[i]
-   
-    return numArab       
+
+    return numArab
