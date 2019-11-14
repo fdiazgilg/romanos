@@ -3,10 +3,14 @@ import conversion
 def esRomano(num):
     tipo1 = ('M','C','X','I')
     tipo5 = ('D','L','V')
+    romans = ('M','D','C','L','X','V','I')
     
     resultado = True
     
-  
+    for i in range(len(num)):
+        if num[i] not in romans:
+            resultado = False
+
     for i in tipo1:
         if 4*i in num:
             resultado = False
@@ -52,6 +56,6 @@ decimal = InputUntil("Introduzca un número entero y positivo: ", lambda x: esEn
 romano = conversion.arabRomano(decimal)
 print("El número romano correspondiente al número arábigo {} es {}.".format(int(decimal),romano))
 
-roman = InputUntil("\nIntroduzca un número romano válido: ", lambda x: esRomano(x), 'No se puede convertir este número romano.\n')
+roman = InputUntil("\nIntroduzca un número romano válido: ", esRomano, 'Este número romano no es válido.')
 arabigo = conversion.romanoArab(roman)
 print("El número arábigo correspondiente al número romano {} es {}.".format(roman,arabigo))
